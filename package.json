@@ -1,10 +1,10 @@
 {
   "name": "@bhoos/benchmark",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Benchmarking utility",
   "main": "index.js",
   "bin": {
-    "benchmark": "node index.js"
+    "benchmark": "./index.js"
   },
   "author": "Ranjan Shrestha",
   "license": "MIT",
