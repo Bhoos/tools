@@ -10,6 +10,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
+    "commander": "^2.19.0",
     "numeral": "^2.0.6"
   }
 }
