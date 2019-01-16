@@ -1,7 +1,9 @@
 #!/usr/bin/env node
+/* eslint-disable no-console */
 const fs = require('fs');
 const path = require('path');
 const numeral = require('numeral');
+
 const timeUnits = ['ms', 'µs', 'ns', 'ps'];
 
 let invoked = false;
@@ -9,7 +11,7 @@ let invoked = false;
 function benchmark(description, fn, n = 100000) {
   invoked = true;
   const start = Date.now();
-  for (let i = 0; i < n ;i += 1) {
+  for (let i = 0; i < n; i += 1) {
     fn(i);
   }
 
@@ -21,7 +23,7 @@ function benchmark(description, fn, n = 100000) {
     perIteration *= 1000;
     unit += 1;
   }
-  console.log(`${description}::${numeral(n).format('#,##')} iterations, ${interval}ms, Per Iteration: ${Math.round(perIteration)}${timeUnits[unit]}`);
+  console.log(`${description}::${numeral(n).format('#,##')} iterations, ${interval}ms, Per Iteration: ${Math.round(perIteration)}${timeUnits[unit]}, Rate: ${rate}/sec`);
 }
 
 global.benchmark = benchmark;
@@ -33,6 +35,7 @@ if (!fs.existsSync(file)) {
 }
 
 // Require the path
+// eslint-disable-next-line import/no-dynamic-require
 require(path.resolve(file));
 
 if (!invoked) {
